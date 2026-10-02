@@ -46,6 +46,13 @@ export async function getAssistantReply(
     );
   }
 
+  const model = process.env.GROQ_MODEL;
+  if (!model) {
+    throw new Error(
+      "GROQ_MODEL is not set. Add a supported Groq model ID to your environment variables."
+    );
+  }
+
   const response = await fetch(GROQ_ENDPOINT, {
     method: "POST",
     headers: {
@@ -53,7 +60,7 @@ export async function getAssistantReply(
       Authorization: `Bearer ${apiKey}`,
     },
     body: JSON.stringify({
-      model: process.env.GROQ_MODEL ?? "llama-3.3-70b-versatile",
+      model,
       messages: [
         { role: "system", content: SYSTEM_PROMPT },
         // Groq expects only { role, content } — strip our extra fields.
