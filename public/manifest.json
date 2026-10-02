@@ -1,0 +1,8 @@
+{
+  "name": "Prism-AI",
+  "short_name": "Prism-AI",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0E1116",
+  "theme_color": "#0E1116"
+}
